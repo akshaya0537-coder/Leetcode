@@ -1,15 +1,17 @@
 class Solution:
     def selfDividingNumbers(self, left: int, right: int) -> List[int]:
-        result = []
-        for num in range(left, right + 1):
-            is_self_dividing = True
-            temp_num = num
-            while temp_num > 0:
-                digit = temp_num % 10
-                if digit == 0 or num % digit != 0:
-                    is_self_dividing = False
-                    break
-                temp_num //= 10
-            if is_self_dividing:
-                result.append(num)
-        return result
+        def snum(n:int)->bool:
+            count=0
+            for d in str(n):
+                if int(d)!=0:
+                    if n%(int(d))==0:
+                        count+=1
+            if count==len(str(n)):
+                return True
+            else:
+                return False
+        res=[]
+        for i in range(left,right+1):
+            if snum(i)==True:
+                res.append(i)
+        return res
